@@ -15,5 +15,5 @@ En mi campo de trabajo que es el 3d desde el modelado hasta simulaciones , la al
 "Antes de ejecutar el código, escribe en tu bitácora qué esperas que suceda."
 Lo que voy a hacer es modificiar el numero total aleatorio para pasarlo de 0 a 4(en el codigo quedaria  asi const choice = floor(random(5));), de esta forma por el else del codigo lo que hara es que el walker vaya hacia arriba 
 
-"Ocurrió lo que esperabas? ¿Por qué crees que sí o por qué crees que no?"
+*Ocurrió lo que esperabas? ¿Por qué crees que sí o por qué crees que no?*
 Si ocurrio lo esperaba el walker fue para arriba generando como una especie de un palito de arbol 
