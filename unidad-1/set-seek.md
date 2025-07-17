@@ -17,3 +17,12 @@ Lo que voy a hacer es modificiar el numero total aleatorio para pasarlo de 0 a 4
 
 **Ocurrió lo que esperabas? ¿Por qué crees que sí o por qué crees que no?**
 Si ocurrio lo esperaba el walker fue para arriba generando como una especie de un palito de arbol 
+
+### Actividad 04 
+**En tus propias palabras cuál es la diferencia entre una distribución uniforme y una no uniforme de números aleatorios.**
+Con la distribucion uniforme lo que pasa es que cada uno tiene la misma probabilidad en a infinidad de numeros que haya mientras que con la distribucion no uniforme pasa lo contrario haciendo que haya numeros que tengan mas probabilidades de salir que otros 
+**En tus propias palabras cuál es la diferencia entre una distribución uniforme y una no uniforme de números aleatorios.**
+
+<img width="1606" height="599" alt="image" src="https://github.com/user-attachments/assets/3f460922-0b88-4588-a26f-1a5eeeffd4a5" />
+
+Aqui lo que hice fue aumentar el valor de ranom a 5 haciendo que se generen numeros de 0 4 esto hasta le momento seguira una distribucion uniforme pero con la modificacion que le hice que pueda generar mas numeros lo cambie a una distribucion no uniforme  y el x ++ es el que hace que el walker vaya mas hacia la derecha es el que le asigno para que sea el else por que los otros valores que son 0 , 1, 2 solamente dibujaria para ese lado en caso de que salga con ese numero pero con el else dibuja cuando le salen 3 o 4 siendo mas numeros haciendo que dibuje mas para la derecha
