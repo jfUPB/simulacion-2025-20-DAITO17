@@ -26,3 +26,36 @@ Con la distribucion uniforme lo que pasa es que cada uno tiene la misma probabil
 <img width="1606" height="599" alt="image" src="https://github.com/user-attachments/assets/3f460922-0b88-4588-a26f-1a5eeeffd4a5" />
 
 Aqui lo que hice fue aumentar el valor de ranom a 5 haciendo que se generen numeros de 0 4 esto hasta le momento seguira una distribucion uniforme pero con la modificacion que le hice que pueda generar mas numeros lo cambie a una distribucion no uniforme  y el x ++ es el que hace que el walker vaya mas hacia la derecha es el que le asigno para que sea el else por que los otros valores que son 0 , 1, 2 solamente dibujaria para ese lado en caso de que salga con ese numero pero con el else dibuja cuando le salen 3 o 4 siendo mas numeros haciendo que dibuje mas para la derecha
+
+
+### Actividad 05 
+**Copia el código en tu bitácora.**
+
+function setup() {
+  createCanvas(640, 240);
+  background(255);
+  noStroke();
+}
+
+function draw() {
+  let x = 320; // Fijo en el centro horizontal
+  let y = randomGaussian(120, 60); // Distribución vertical
+
+  fill(0, 10);
+
+  // Triángulo con punta en (x, y) y base más abajo
+  let size = 16;
+  triangle(
+    x, y,                 // punta del triángulo
+    x - size / 2, y + size, // base izquierda
+    x + size / 2, y + size  // base derecha
+  );
+}
+
+
+**Coloca en enlace a tu sketch en p5.js en tu bitácora.**
+
+https://editor.p5js.org/DAITO17/sketches/y-gQW0F-g
+
+**Selecciona una captura de pantalla de tu sketch y colócala en tu bitácora.**
+<img width="1537" height="442" alt="image" src="https://github.com/user-attachments/assets/d1b1756d-08d2-45c4-a659-6b370dd3c1a0" />
