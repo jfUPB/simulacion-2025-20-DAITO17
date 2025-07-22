@@ -113,3 +113,33 @@ https://editor.p5js.org/DAITO17/sketches/eVPw9hHJ9
 **Selecciona una captura de pantalla de tu sketch y colócala en tu bitácora.**
 <img width="1603" height="722" alt="image" src="https://github.com/user-attachments/assets/89d65acb-2295-4a5f-8628-5aa8713198eb" />
 
+###  Actividad07 
+**Explica el concepto qué resultados esberabas obtener.**
+Los resultados que espero es que un circulo este pintando otro circulo y dejando un path por donde pasa pero este circulo el cual se esta pintando nunca va a terminar de cerrar por como funciona el noise que utilizare para el perlin , entonces al final va  a quedar una c 
+
+**copia el codigo en tu bitacora**
+let t = 0;
+
+function setup() {
+  createCanvas(640, 240);
+  background(255);
+  stroke(0, 20);
+  fill(0, 10);
+}
+
+function draw() {
+  let radius = 80;
+  let angle = noise(t) * TWO_PI;
+  let x = width / 2 + cos(angle) * radius;
+  let y = height / 2 + sin(angle) * radius;
+
+  ellipse(x, y, 10, 10);
+
+  t += 0.01;
+}
+
+**Coloca en enlace a tu sketch en p5.js en tu bitácora.**
+https://editor.p5js.org/DAITO17/sketches/fETtOsERG
+
+**Selecciona una captura de pantalla de tu sketch y colócala en tu bitácora.**
+<img width="1604" height="691" alt="image" src="https://github.com/user-attachments/assets/26783713-f42a-45a3-a550-d3df86fe5fa8" />
