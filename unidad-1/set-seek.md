@@ -39,16 +39,16 @@ function setup() {
 
 function draw() {
   let x = 320; // Fijo en el centro horizontal
-  let y = randomGaussian(120, 60); // Distribución vertical
+  let y = randomGaussian(120, 60); 
 
   fill(0, 10);
 
-  // Triángulo con punta en (x, y) y base más abajo
+ 
   let size = 16;
   triangle(
-    x, y,                 // punta del triángulo
-    x - size / 2, y + size, // base izquierda
-    x + size / 2, y + size  // base derecha
+    x, y,                 
+    x - size / 2, y + size, 
+    x + size / 2, y + size  
   );
 }
 
