@@ -31,6 +31,7 @@ Aqui lo que hice fue aumentar el valor de ranom a 5 haciendo que se generen nume
 ### Actividad 05 
 **Copia el código en tu bitácora.**
 
+``` js
 function setup() {
   createCanvas(640, 240);
   background(255);
@@ -51,14 +52,14 @@ function draw() {
     x + size / 2, y + size  
   );
 }
-
+```
 
 **Coloca en enlace a tu sketch en p5.js en tu bitácora.**
 
-https://editor.p5js.org/DAITO17/sketches/y-gQW0F-g
+[Mi sketch](https://editor.p5js.org/DAITO17/sketches/y-gQW0F-g)
 
 **Selecciona una captura de pantalla de tu sketch y colócala en tu bitácora.**
-<img width="1537" height="442" alt="image" src="https://github.com/user-attachments/assets/d1b1756d-08d2-45c4-a659-6b370dd3c1a0" />
+<img width="800" height="220" alt="image" src="https://github.com/user-attachments/assets/d1b1756d-08d2-45c4-a659-6b370dd3c1a0" />
 
 
 ###   Actividad 6
@@ -67,6 +68,7 @@ https://editor.p5js.org/DAITO17/sketches/y-gQW0F-g
 
  **Copia el codgio en tu bitacora**
 
+``` js
  let x = 320; // posición inicial horizontal
 let y = 120; // fijo en el centro vertical
 
@@ -106,6 +108,8 @@ function levy() {
 
   return step;
 }
+```
+
 **Coloca en enlace a tu sketch en p5.js en tu bitácora.**
 
 https://editor.p5js.org/DAITO17/sketches/eVPw9hHJ9
@@ -118,6 +122,8 @@ https://editor.p5js.org/DAITO17/sketches/eVPw9hHJ9
 Los resultados que espero es que un circulo este pintando otro circulo y dejando un path por donde pasa pero este circulo el cual se esta pintando nunca va a terminar de cerrar por como funciona el noise que utilizare para el perlin , entonces al final va  a quedar una c 
 
 **copia el codigo en tu bitacora**
+
+``` js
 let t = 0;
 
 function setup() {
@@ -138,7 +144,10 @@ function draw() {
   t += 0.01;
 }
 
+```
+
 **Coloca en enlace a tu sketch en p5.js en tu bitácora.**
+
 https://editor.p5js.org/DAITO17/sketches/fETtOsERG
 
 **Selecciona una captura de pantalla de tu sketch y colócala en tu bitácora.**
