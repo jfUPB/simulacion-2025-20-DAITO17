@@ -59,3 +59,57 @@ https://editor.p5js.org/DAITO17/sketches/y-gQW0F-g
 
 **Selecciona una captura de pantalla de tu sketch y colócala en tu bitácora.**
 <img width="1537" height="442" alt="image" src="https://github.com/user-attachments/assets/d1b1756d-08d2-45c4-a659-6b370dd3c1a0" />
+
+
+###   Actividad 6
+**Explica por qué usaste esta técnica y qué resultados esperabas obtener.**
+ bueno hablando del levy flight en el codgio primero cogi el ejemplo de la actividad anterior pero en evz de que se pinte verticalmente se pinta horizontalmente , ahora si hablando del levy , el let beta es lo que define cuan grandes pueden ser los saltos  , el let u random  genera un numero aleotorio u queesta entre 0 y 1 y por ultimo el pow lo que hace es que  transform el numero en una potencia para que este siga una distribuciond e levy esto hace que genere pequeño saltos la mayoria del tiempo pero a veces genera alguno grande entre mas pequeño sea el numero mas grande es el salto  gracias a la division de -1/beta 
+
+ **Copia el codgio en tu bitacora**
+
+ let x = 320; // posición inicial horizontal
+let y = 120; // fijo en el centro vertical
+
+function setup() {
+  createCanvas(640, 240);
+  background(255);
+  noStroke();
+}
+
+function draw() {
+ 
+  let step = levy();
+  x += step;
+
+ 
+  x = constrain(x, 0, width);
+
+  fill(0, 10);
+
+  let size = 16;
+  // Triángulo apuntando hacia arriba
+  triangle(
+    x, y,
+    x - size / 2, y + size,
+    x + size / 2, y + size
+  );
+}
+
+// Función de paso tipo Lévy (colas largas)
+function levy() {
+  let beta = 1.5;
+  let u = random(1);
+  let step = pow(u, -1 / beta);
+
+  // Aleatoriedad de dirección: izquierda o derecha
+  if (random() < 0.5) step *= -1;
+
+  return step;
+}
+**Coloca en enlace a tu sketch en p5.js en tu bitácora.**
+
+https://editor.p5js.org/DAITO17/sketches/eVPw9hHJ9
+
+**Selecciona una captura de pantalla de tu sketch y colócala en tu bitácora.**
+<img width="1603" height="722" alt="image" src="https://github.com/user-attachments/assets/89d65acb-2295-4a5f-8628-5aa8713198eb" />
+
