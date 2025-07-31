@@ -114,6 +114,6 @@ El metodo lo que hace es calcular la disntancia entre dos vectores , esto puede 
 **
 
 
-¿Para qué sirven los métodos normalize() y limit()?**
+**¿Para qué sirven los métodos normalize() y limit()?**
 
 Normalize sirve para convertir  un vector con la misma direccion pero con magnitud 1 , mientras que limit limita la magnitud de un vector a una valor maximo 
