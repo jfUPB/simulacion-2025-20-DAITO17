@@ -111,9 +111,93 @@ El producto cruz de dos vectores un nuevo vector perpendicular a ambos ,  la mag
 
 
 El metodo lo que hace es calcular la disntancia entre dos vectores , esto puede servir cuando quiero calcular la disntancia que hya entre dos puntos en un espacio 
-**
-
 
 **¿Para qué sirven los métodos normalize() y limit()?**
 
 Normalize sirve para convertir  un vector con la misma direccion pero con magnitud 1 , mientras que limit limita la magnitud de un vector a una valor maximo 
+
+### Actividad 05
+**El código que genera el resultado que te pedí.**
+``` js
+ let amt = 0;
+ let direction = 1;
+function setup() {
+    createCanvas(400, 400);
+}
+
+function draw() {
+    background(200);
+
+    let v0 = createVector(100, 100);
+    let v1 = createVector(200, 0);
+    let v2 = createVector(0, 200);
+    let v3 = p5.Vector.lerp(v1, v2, amt);
+    let colorInter = lerpColor(color('red'), color('blue'), amt);
+    let endRed = p5.Vector.add(v0,  v1);
+    let endBlue = p5.Vector.add(v0,  v2);
+    let vGreen = p5.Vector.sub(endBlue, endRed);
+    drawArrow(v0, v1, 'red');
+    drawArrow(v0, v2, 'blue');
+    drawArrow(endRed, vGreen, 'green');
+    drawArrow(v0, v3, colorInter); 
+     amt += 0.01 * direction;
+  if (amt >= 1 || amt <= 0) {
+    direction *= -1;
+  }
+   
+}
+
+function drawArrow(base, vec, myColor) {
+    push();
+    stroke(myColor);
+    strokeWeight(3);
+    fill(myColor);
+    translate(base.x, base.y);
+    line(0, 0, vec.x, vec.y);
+    rotate(vec.heading());
+    let arrowSize = 7;
+    translate(vec.mag() - arrowSize, 0);
+    triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+    pop();
+}
+```
+
+**¿Cómo funciona lerp() y lerpColor().**
+Lerp funciona para calcular un valor entre dos vectores esto varia segun el valor de amt por ejemplo entre 0 y 1 junto con a y b que son dos vectores por ejemplo a o b si amt es igual a 0 devolvera a si es iugal a 1 devolvera b  y si amt es iigual a 0.5 devuelve un punto justo en la mitad de a y b. 
+
+El lerp color sirve como una interpolacion de colores dpendiendo del color de amt y de 2 colores , por ejemplo segun el valor de amt devuleve una mezcla del color 1 y 2. 
+
+**¿Cómo se dibuja una flecha usando drawArrow()?**
+
+
+En la funcion  de drawarrow tenemos base que es el punto de origen de la flecha  , tenemos vec que es el vector de direccion y longitud por ultimo tenemos my cokor que es el color de la flecha , luego uya hablando dentro de la funcion tenemos line(0, 0, vec.x, vec.y); que es la encagrada de dibujar la linea del vector , de esta para arriba es la parte que se encarga de dibujar la flecha y de   rotate(vec.heading());  para abajo es para hacer la punta del vector 
+
+
+### Actividad 06
+
+**Cuál es el concepto del marco motion 101 y cómo se interpreta geométricamente.**
+El motion 101 se puede decir qyue enseña que el movimiento se puede dar sumando vectores en cad frame  , esto funciona gracias a que un objeto en movimiento tiene tiene posicion veñocidad y una aceleracion las cuales se actualizan cada frame. 
+
+Hablando de su interpretacion geometrica habalando cada uno de esos componentes es un vector que tiene direccion y magnitud por ejemplo ya en dentro de p5 posición + velocidad + aceleración = nuevo estado del objeto.
+
+**¿Cómo se aplica motion 101 en el ejemplo?**
+
+En el ejemplo se ve un circulo que solo se mueve utilizando poscion y velocidad gracias a esto puede generar movimiento sin aceleracion.
+
+### Actividad 07 
+
+**¿Qué observaste cuando usas cada una de las aceleraciones propuestas?**
+
+**Constante.**
+La bola se mueve en linea diagonal y si no se llega a limitar la velocidad esta nunca dejara de de crecer , si no hay rebote la bola se puede llegar a a slair de la pnatalla.
+
+**Aleatoria.**
+
+Este movimiento me recordo un poco al levy flight ya que va como despacio y a vces empieza a acelerar ademas de esto parace que la bola estuviera borrahca y no supiera para donde ir como mantenerse recta.
+
+**Mouse**
+
+Con este movimeinto la bola seguia al mouse si pero se tardaba  y por ejemplo pasaba una vez por el mpuse y tardaba como 3 rebotes para volver a darle al mouse.
+
+
+
