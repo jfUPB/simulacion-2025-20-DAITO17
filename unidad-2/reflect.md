@@ -35,6 +35,22 @@ Me gustaria ver alguna forma de mejorar la parte grafica y pensar como en algo m
 
 ### Actividad 10
 
+-esta actividad la hice con Santiago Restrepo 
+**¿La obra visual refleja la intención descrita?**
+
+Lo hace y de forma muy acertada me gustan bastante la forma visual de la obra 
+
+**¿Se aplica correctamente el marco MOTION 101? ¿Es el código legible y está bien estructurado?**
+
+si se aplica correctamente el motion 101 sin modificar la posicion y utilizando por ejemplo la velocidad 
+
+**¿El algoritmo de aceleración es interesante y genera un comportamiento único?**
+
+si cumple con lo que dice por ejemplo el moviemiento del resorte me parece algo muy unico al igual que como se creo este desde la programacion 
+
+**¿La interacción es intuitiva y tiene un impacto significativo en la obra?**
+
+lo hace dado a que el objeto se mueve a dond esta el mouse ademas de que con las teclas se pueden modificar otros factores 
 
 ###Actividad 11
 
@@ -58,3 +74,4 @@ Si me parecio effectiva por que fue como cada conepto funcionaba por si solo exp
 
 no yo creo que ya pues me parecio una unidad que enseña cosas muy improtantes para todo lo que tiene que ver con el arte generativo y que estuvo muy bien construida 
  
+
