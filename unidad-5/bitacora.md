@@ -225,3 +225,143 @@ Imagen de la obra modificada
 <img width="644" height="278" alt="image" src="https://github.com/user-attachments/assets/9691b8d9-fc1e-419e-99b2-c44eee6fb516" />
 
 
+
+### Modificacion del 4.5
+
+
+Bueno para esta modificacion quise modelar alguna fuerza o alog por estilo a si que me fui a la unidad 3 a ver que encontraba y hubo que me llamo mucho la atencion que fue la de fluid resistance , entonces lo primero fue dibujar el rectangulo que va a asemejar donde va a estar el liquido , luego de esto se hace un metodo que revise si la particula esta dentro del liquido chequeando su altura en caso de lo este se le aplica la fuerza esta esta dada de la siguiente resistencia del fluido = -c⋅v^2⋅v^ , donde c es valor que indica que tan biscoso esta el liquido , v es la velocidad de la particula y v^ es el vector dirrecion de la velocidad pero normalizado por ultimo el signo menos al principio de la ecuacion indica que va en contra de la dirrecion del movimiento y ya por ultimo si la particula esta en el liquido se calcula la fuerza luego se llama apllyforce para sumarle la aceleracion esto haciendo que en cad aupdate la velocidad se reduzca.
+
+
+En cuanto al aprovechamineto de la memoria la cosa sigue igual en este codigo de iugal manera cuando la particula va llegando al fondo del liquido se mepieza a desaparecer como pasbaa en loa anterirores codigos 
+
+**Codigo modificado**
+``` js
+
+class Particle {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.acceleration = createVector(0, 0);
+    this.velocity = createVector(random(-1, 1), random(-1, 0));
+    this.lifespan = 255.0;
+  }
+
+  run() {
+    let gravity = createVector(0, 0.05);
+    this.applyForce(gravity);
+
+   
+    if (this.isInsideLiquid()) {
+      let drag = this.calculateDrag(0.1); 
+      this.applyForce(drag);
+    }
+
+    this.update();
+    this.show();
+  }
+
+  applyForce(force) {
+    this.acceleration.add(force);
+  }
+
+  update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.lifespan -= 2;
+    this.acceleration.mult(0);
+  }
+
+  show() {
+    stroke(0, this.lifespan);
+    strokeWeight(2);
+    fill(127, this.lifespan);
+    circle(this.position.x, this.position.y, 8);
+  }
+
+  isDead() {
+    return this.lifespan < 0.0;
+  }
+
+  
+  isInsideLiquid() {
+    return this.position.y > height * 0.75;
+  }
+
+  
+  calculateDrag(c) {
+    let speed = this.velocity.mag();
+    let dragMagnitude = c * speed * speed;
+    let drag = this.velocity.copy();
+    drag.mult(-1);
+    drag.normalize();
+    drag.mult(dragMagnitude);
+    return drag;
+  }
+}
+
+
+class Confetti extends Particle {
+  show() {
+    let angle = map(this.position.x, 0, width, 0, TWO_PI * 2);
+    rectMode(CENTER);
+    fill(127, this.lifespan);
+    stroke(0, this.lifespan);
+    strokeWeight(2);
+    push();
+    translate(this.position.x, this.position.y);
+    rotate(angle);
+    square(0, 0, 12);
+    pop();
+  }
+}
+
+
+class Emitter {
+  constructor(x, y) {
+    this.origin = createVector(x, y);
+    this.particles = [];
+  }
+
+  addParticle() {
+    let r = random(1);
+    if (r < 0.5) {
+      this.particles.push(new Particle(this.origin.x, this.origin.y));
+    } else {
+      this.particles.push(new Confetti(this.origin.x, this.origin.y));
+    }
+  }
+
+  run() {
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      let p = this.particles[i];
+      p.run();
+      if (p.isDead()) {
+        this.particles.splice(i, 1);
+      }
+    }
+  }
+}
+
+
+let emitter;
+
+function setup() {
+  createCanvas(640, 240);
+  emitter = new Emitter(width / 2, 20);
+}
+
+function draw() {
+  background(255);
+ rectMode(CORNER);
+  
+  noStroke();
+  fill(100, 150, 255, 150);
+  rect(0, height * 0.75, width, height * 0.25);
+
+  emitter.addParticle();
+  emitter.run();
+}
+```
+**Imagen del codigo funcionando**
+
+<img width="644" height="253" alt="image" src="https://github.com/user-attachments/assets/82ffb317-e16e-41b7-9fa3-c7d801830ced" />
+
