@@ -365,3 +365,116 @@ function draw() {
 
 <img width="644" height="253" alt="image" src="https://github.com/user-attachments/assets/82ffb317-e16e-41b7-9fa3-c7d801830ced" />
 
+
+
+### Modificacion del 4.6
+
+
+Bueno en este caso se que de igual manera la particulas en este codigo tienen gravedad aplicada ahora la modificacion que le puse al codigo fue el viento , cuando el click del mouse esta presionado hace que las particulas vayan en esa dirrecion igual se podria hablar de que utilice en la unidad 3 de fuerzas pero ahora modelando otra fuerza , bueno ahora si hablando concretamente dle codigo , primero en draw se llama a un condicional que solo funciona si el mouse esta presioando se empeiza a aplicar las fuerzas en la particulas , esta se calcula de la sigueinte manera esta el map(mousex , esto para lo que sirve es transformar la posicion horizontal del mouse en una fuerza , luego con la fuerza se crea un vector este solo tiene componente en x y en Y es 0 esto haciendo que solamente se pueda mover el viento horizontalmente , luego en apply force cada particula recibe la misma fuerza dle viento  ya dentro de Particle.applyForce esta fuerza se convierte en acceleracion traduciendo esto significa que el viento no cambia de velocidad directamente si no que que agrega aceleracion , todo esto genera que la aceleraccion de la particula sea modificada pero solamente horizontalmente 
+
+
+Igual el ahorramiento de la memoria y la desaparacion de las particulas funciona igual en este codigo 
+
+**Codigo modificado**
+[enlace al codigo en p5](https://editor.p5js.org/DAITO17/sketches/ryI8ZV_vt)
+``` js
+// The Nature of Code
+// Daniel Shiffman
+// http://natureofcode.com
+
+class Emitter {
+  constructor(x, y) {
+    this.origin = createVector(x, y);
+    this.particles = [];
+  }
+
+  addParticle() {
+    this.particles.push(new Particle(this.origin.x, this.origin.y));
+  }
+
+  applyForce(force) {
+    for (let particle of this.particles) {
+      particle.applyForce(force);
+    }
+  }
+
+  run() {
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      const particle = this.particles[i];
+      particle.run();
+      if (particle.isDead()) {
+        this.particles.splice(i, 1);
+      }
+    }
+  }
+}
+
+class Particle {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.acceleration = createVector(0, 0.0);
+    this.velocity = createVector(random(-1, 1), random(-2, 0));
+    this.lifespan = 255.0;
+    this.mass = 1;
+  }
+
+  run() {
+    this.update();
+    this.show();
+  }
+
+  applyForce(force) {
+    let f = force.copy();
+    f.div(this.mass);
+    this.acceleration.add(f);
+  }
+
+  update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.acceleration.mult(0);
+    this.lifespan -= 2.0;
+  }
+
+  show() {
+    stroke(0, this.lifespan);
+    strokeWeight(2);
+    fill(127, this.lifespan);
+    circle(this.position.x, this.position.y, 8);
+  }
+
+  isDead() {
+    return this.lifespan < 0.0;
+  }
+}
+
+let emitter;
+
+function setup() {
+  createCanvas(1280, 480);
+  emitter = new Emitter(width / 2, 50);
+}
+
+function draw() {
+  background(255, 30);
+
+  // Gravedad
+  let gravity = createVector(0, 0.1);
+  emitter.applyForce(gravity);
+
+  // Viento controlado por el mouse (solo cuando está presionado)
+  if (mouseIsPressed) {
+    // Mapeamos mouseX a un rango de fuerza
+    let windStrength = map(mouseX, 0, width, -0.2, 0.2);
+    let wind = createVector(windStrength, 0);
+    emitter.applyForce(wind);
+  }
+
+  emitter.addParticle();
+  emitter.run();
+}
+``` 
+
+**Imagen del codigo**
+<img width="820" height="481" alt="image" src="https://github.com/user-attachments/assets/1c978c21-45d7-46e2-b5b7-b7452b913ea0" />
+
