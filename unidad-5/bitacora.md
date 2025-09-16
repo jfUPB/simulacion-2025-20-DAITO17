@@ -11,6 +11,7 @@ Habalndo acerca de las particulas y de sus ciclo
 Estas se crean en la funcion draw que se ejecuta 60 veces por segundo , o sea cada vez que draw es ejecutado se crea una nueva particula luego de esto se recorre un array de atras hacia adelante , esto es una técnica común porque si eliminas un elemento en medio del splice, no se rompen los índices de los elementos que aún no se han procesado luego de esto hay un if que revisa si la particula sigue existiendo o no, si esta muerta se elimina del array ahora hablando de memoria con el splice (splice i,1) lo que hace es que borra el elemento i del array cuando se borra la referencia del objeto en el array el recolector de basura detcta que ya ese pbnjeto no tiene ninguna referencia activa haciendo que se libere la memoria que estab ocupando ese objeto en especifico
 
 **Codigo modificado**
+[Link a la modificacion del codigo](https://editor.p5js.org/DAITO17/sketches/ixWzWoVpM)
 ``` js
 let particles = [];
 
@@ -121,6 +122,7 @@ En cuanto a las particulas y si su ciclo  , sigue siendo igual al ejemplo anteri
 
 
 **Codigo modificado**
+[Link a la modificacion del codigo](https://editor.p5js.org/DAITO17/sketches/A6GeOvCVb)
 ``` js
 // The Nature of Code
 // Daniel Shiffman
@@ -235,6 +237,7 @@ Bueno para esta modificacion quise modelar alguna fuerza o alog por estilo a si 
 En cuanto al aprovechamineto de la memoria la cosa sigue igual en este codigo de iugal manera cuando la particula va llegando al fondo del liquido se mepieza a desaparecer como pasbaa en loa anterirores codigos 
 
 **Codigo modificado**
+[Link a la modificacion del codigo](https://editor.p5js.org/DAITO17/sketches/UCwqabmOy)
 ``` js
 
 class Particle {
@@ -477,4 +480,5 @@ function draw() {
 
 **Imagen del codigo**
 <img width="820" height="481" alt="image" src="https://github.com/user-attachments/assets/1c978c21-45d7-46e2-b5b7-b7452b913ea0" />
+
 
