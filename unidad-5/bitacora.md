@@ -482,3 +482,141 @@ function draw() {
 <img width="820" height="481" alt="image" src="https://github.com/user-attachments/assets/1c978c21-45d7-46e2-b5b7-b7452b913ea0" />
 
 
+### Modificacion del 4.7
+
+Bueno para este caso hice uso del concepto de la unidad 4 que son los resortes entonces en vez de que haga la repulsion actua un resorte como atryendo y empujando , hablando tecnicamente repeller ya no existe ahora es spring entonces con la ley de hooke que es f= -k⋅x⋅d , k es la constante de elasticidad x es la elongacion (distancia actual -elongacion del peso) y la d es la direccion normalizada del resorte , entonces para cada particula se calcula la distancia entre ella y luego la elongacion  esta se calcula stretch = distance - restLength si el strech es positivo el resorte atrae en cambio si es negativa el resorte empuja luego de este calcula se normaliza el vector direccion luego se multiplica por -k * strech para generar la fuerza y por ultima esta fuerza se aplica a la generacion de la particula 
+
+el ahorramiento de memoria y la gestion de las particulas funciona igual 
+**Codigo modificado**
+[enlace al codigo en p5](https://editor.p5js.org/DAITO17/sketches/NMkaGualC)
+``` js
+
+class Emitter {
+  constructor(x, y) {
+    this.origin = createVector(x, y);
+    this.particles = [];
+  }
+
+  addParticle() {
+    this.particles.push(new Particle(this.origin.x, this.origin.y));
+  }
+
+  applyForce(force) {
+    for (let particle of this.particles) {
+      particle.applyForce(force);
+    }
+  }
+
+  applySpring(spring) {
+    for (let particle of this.particles) {
+      let force = spring.attract(particle);
+      particle.applyForce(force);
+    }
+  }
+
+  run() {
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      const particle = this.particles[i];
+      particle.run();
+      if (particle.isDead()) {
+        this.particles.splice(i, 1);
+      }
+    }
+  }
+}
+
+
+class Particle {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.velocity = createVector(random(-1, 1), random(-1, 0));
+    this.acceleration = createVector(0, 0);
+    this.lifespan = 255.0;
+  }
+
+  run() {
+    this.update();
+    this.show();
+  }
+
+  applyForce(f) {
+    this.acceleration.add(f);
+  }
+
+  update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.lifespan -= 2;
+    this.acceleration.mult(0);
+  }
+
+  show() {
+    stroke(0, this.lifespan);
+    strokeWeight(2);
+    fill(127, this.lifespan);
+    circle(this.position.x, this.position.y, 8);
+  }
+
+  isDead() {
+    return this.lifespan < 0.0;
+  }
+}
+
+
+class Spring {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.k = 0.05;          
+    this.restLength = 100;  
+  }
+
+  show() {
+    stroke(0);
+    strokeWeight(2);
+    fill(127);
+    circle(this.position.x, this.position.y, 32);
+  }
+
+  attract(particle) {
+    let force = p5.Vector.sub(particle.position, this.position);
+    let distance = force.mag();
+
+    
+    let stretch = distance - this.restLength;
+
+   
+    force.normalize();
+    force.mult(-1 * this.k * stretch);
+
+    return force;
+  }
+}
+
+
+let emitter;
+let spring;
+
+function setup() {
+  createCanvas(640, 240);
+  emitter = new Emitter(width / 2, 60);
+  spring = new Spring(width / 2, 200);
+}
+
+function draw() {
+  background(255);
+
+  emitter.addParticle();
+
+  let gravity = createVector(0, 0.1);
+  emitter.applyForce(gravity);
+
+  emitter.applySpring(spring);
+  emitter.run();
+
+  spring.show();
+}
+```
+
+**Imagen del codigo**
+<img width="636" height="241" alt="image" src="https://github.com/user-attachments/assets/54ea904a-e151-4b19-ad02-a7a5037f5a7b" />
+
