@@ -620,3 +620,9 @@ function draw() {
 **Imagen del codigo**
 <img width="636" height="241" alt="image" src="https://github.com/user-attachments/assets/54ea904a-e151-4b19-ad02-a7a5037f5a7b" />
 
+
+
+## Actividad 03
+
+###Ideacion##
+Bueno en este caso voy a partir del 4.7 dado a que me gusto mucho la interracion que termino teniendo el repeller modificandolo para que funcionara como un resorte  tambien quiero que haya varios generadores de particulas 2 para ser concreto a la ziquierda y derecha , luego que el movimiento de estas particulas este dado por un perlin y un levy flight para que tenga un comportamiento mas natural tengo que gestionar bien el tiempo de la particula para que duren un poquito mas pero sin pecar de que se me empiece a trbar , luegode esto aplicar un lerp coor para que las particulas vayan cambiando de color juntando esto va aser el repeller en el centro y la particulas volando libres por ahi pero al mismo tiempo siendo atraidas al centro
