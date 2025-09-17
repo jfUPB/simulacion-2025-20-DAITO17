@@ -625,4 +625,226 @@ function draw() {
 ## Actividad 03
 
 ###Ideacion##
-Bueno en este caso voy a partir del 4.7 dado a que me gusto mucho la interracion que termino teniendo el repeller modificandolo para que funcionara como un resorte  tambien quiero que haya varios generadores de particulas 2 para ser concreto a la ziquierda y derecha , luego que el movimiento de estas particulas este dado por un perlin y un levy flight para que tenga un comportamiento mas natural tengo que gestionar bien el tiempo de la particula para que duren un poquito mas pero sin pecar de que se me empiece a trbar , luegode esto aplicar un lerp coor para que las particulas vayan cambiando de color juntando esto va aser el repeller en el centro y la particulas volando libres por ahi pero al mismo tiempo siendo atraidas al centro
+Bueno en este caso voy a partir del 4.7 dado a que me gusto mucho la interracion que termino teniendo el repeller modificandolo para que funcionara como un resorte  tambien quiero que haya varios generadores de particulas 2 para ser concreto a la ziquierda y derecha , luego que el movimiento de estas particulas este dado por un perlin y un levy flight para que tenga un comportamiento mas natural tengo que gestionar bien el tiempo de la particula para que duren un poquito mas pero sin pecar de que se me empiece a trbar , luegode esto aplicar un lerp coor para que las particulas vayan cambiando de color juntando esto va aser el repeller en el centro y la particulas volando libres por ahi pero al mismo tiempo siendo atraidas al centro , tambien quiero hacer que la parte interactiva sea que los generadores de particulas se puedan mover con el mouse 
+
+<img width="1278" height="719" alt="image" src="https://github.com/user-attachments/assets/25cf77ae-802f-4755-8d56-338605b6afac" />
+
+Este seria el primer boseto de lo que quiero llegar a ser obviamente va a terminar cambaindo pero bueno , la bola azul grande seria el repeller/resorte y las dos bolas naranjas que hay los lados son los generadores de particulas tal vez no se ve claramente en la imagen pero la obra va a terminar asemejandose a la forma de un atomo , el concepto que al final maneje fue como desde algo como las particulas podemos llegar a asemejar un comportamiento al de un atomo algo tan pequeño que solo con maquinas especiales se puede ver y como con el arte generativo lo podemos llegar a ver 
+
+
+[link de p5.js](https://editor.p5js.org/DAITO17/sketches/LHwf5qGyB)
+
+
+**Codigo**
+``` js 
+let emitterLeft, emitterRight;
+let repeller;
+let particleSpeedFactor = 1.0; // Factor de velocidad global
+
+function setup() {
+  createCanvas(700, 500);
+
+  // Emitters
+  emitterLeft = new Emitter(width * 0.25, 60, 20, ColorParticle);
+  emitterRight = new Emitter(width * 0.75, 60, 20, ColorParticle);
+
+  // Repeller en el centro
+  repeller = new Repeller(width / 2, height / 2);
+}
+
+function draw() {
+  background(255, 30);
+
+  // Generar partículas
+  for (let i = 0; i < 5; i++) {
+    emitterLeft.addParticle();
+    emitterRight.addParticle();
+  }
+
+  // Aplicar fuerzas
+  emitterLeft.applyRepeller(repeller);
+  emitterRight.applyRepeller(repeller);
+
+  // Actualizar y mostrar
+  emitterLeft.run();
+  emitterRight.run();
+
+  // Dibujar generadores y repeller
+  emitterLeft.show();
+  emitterRight.show();
+  repeller.show();
+
+  // Mostrar velocidad en pantalla
+  fill(0);
+  noStroke();
+  textSize(16);
+  textAlign(LEFT, TOP);
+  text(`Velocidad: ${particleSpeedFactor.toFixed(2)}x`, 10, 10);
+}
+
+// Permitir mover los emitters con el mouse
+function mousePressed() {
+  if (mouseButton === LEFT) {
+    emitterLeft.setPosition(mouseX, mouseY);
+  } else if (mouseButton === RIGHT) {
+    emitterRight.setPosition(mouseX, mouseY);
+  }
+}
+
+// Control de velocidad
+function keyPressed() {
+  if (keyCode === UP_ARROW) {
+    particleSpeedFactor = min(particleSpeedFactor + 0.1, 5); // Limite maximo 5x
+  } else if (keyCode === DOWN_ARROW) {
+    particleSpeedFactor = max(particleSpeedFactor - 0.1, 0.1); // Limite minimo 0.1x
+  }
+}
+
+// =======================
+// CLASES MODULARES
+// =======================
+
+class Particle {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.velocity = createVector(random(-0.5, 0.5), random(-1, 0));
+    this.acceleration = createVector(0, 0);
+    this.lifespan = 255;
+    this.mass = 1;
+    this.noiseSeed = random(1000);
+  }
+
+  applyForce(force) {
+    this.acceleration.add(p5.Vector.div(force, this.mass));
+  }
+
+  update() {
+    // Movimiento Perlin (una sola vez)
+    const angle = noise(this.noiseSeed, frameCount * 0.01) * TWO_PI;
+    const perlinForce = p5.Vector.fromAngle(angle).mult(0.05 * particleSpeedFactor);
+    this.velocity.add(perlinForce);
+
+    // Levy flight ocasional
+    if (random(1) < 0.05) {
+      this.velocity.add(this.levyStep().mult(particleSpeedFactor));
+    }
+
+    this.velocity.add(this.acceleration);
+    this.velocity.mult(particleSpeedFactor); // Escala global
+    this.position.add(this.velocity);
+    this.acceleration.mult(0);
+    this.lifespan -= 2;
+  }
+
+  levyStep() {
+    const step = pow(random(1), -1.5);
+    const angle = random(TWO_PI);
+    return p5.Vector.fromAngle(angle).mult(step * 0.1);
+  }
+
+  run() {
+    this.update();
+    this.show();
+  }
+
+  show() {
+    stroke(0, this.lifespan);
+    fill(127, this.lifespan);
+    circle(this.position.x, this.position.y, 8);
+  }
+
+  isDead() {
+    return this.lifespan <= 0;
+  }
+}
+
+class ColorParticle extends Particle {
+  constructor(x, y) {
+    super(x, y);
+    this.colorStart = color(random(255), random(255), random(255));
+    this.colorEnd = color(random(255), random(255), random(255));
+  }
+
+  show() {
+    const t = map(this.lifespan, 255, 0, 0, 1);
+    const c = lerpColor(this.colorStart, this.colorEnd, t);
+    noStroke();
+    fill(red(c), green(c), blue(c), this.lifespan);
+    circle(this.position.x, this.position.y, 8);
+  }
+}
+
+class Emitter {
+  constructor(x, y, r, particleType = Particle) {
+    this.origin = createVector(x, y);
+    this.radius = r;
+    this.particles = [];
+    this.particleType = particleType;
+  }
+
+  setPosition(x, y) {
+    this.origin.set(x, y);
+  }
+
+  addParticle() {
+    const angle = random(TWO_PI);
+    const radius = random(this.radius);
+    const offset = p5.Vector.fromAngle(angle).mult(radius);
+    const spawn = p5.Vector.add(this.origin, offset);
+    this.particles.push(new this.particleType(spawn.x, spawn.y));
+  }
+
+  applyRepeller(repeller) {
+    for (let p of this.particles) {
+      p.applyForce(repeller.spring(p));
+    }
+  }
+
+  run() {
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      const p = this.particles[i];
+      p.run();
+      if (p.isDead()) this.particles.splice(i, 1);
+    }
+  }
+
+  show() {
+    noStroke();
+    fill(50, 100, 200, 120);
+    circle(this.origin.x, this.origin.y, this.radius * 2);
+  }
+}
+
+class Repeller {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.k = 0.02;
+    this.restLength = 50;
+  }
+
+  show() {
+    noStroke();
+    fill(200, 50, 50, 150);
+    circle(this.position.x, this.position.y, 30);
+  }
+
+  spring(particle) {
+    const force = p5.Vector.sub(particle.position, this.position);
+    const distance = force.mag();
+    const x = distance - this.restLength;
+    force.normalize();
+    force.mult(-this.k * x);
+    return force;
+  }
+}
+
+```
+
+<img width="696" height="503" alt="image" src="https://github.com/user-attachments/assets/bc88524e-b44c-4391-8700-d91e8acc20fc" />
+
+<img width="710" height="536" alt="image" src="https://github.com/user-attachments/assets/dfa9480a-abb4-4bb4-8e60-c3106a22e710" />
+
+<img width="686" height="497" alt="image" src="https://github.com/user-attachments/assets/cf1eeb8a-4026-4135-bca9-4017a44b9465" />
+
+
+
