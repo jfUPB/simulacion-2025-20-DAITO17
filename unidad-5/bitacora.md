@@ -2,6 +2,8 @@
 
 Bueno empezando con las notas siento que en la actividad 2 sient que tendria que tener la mejor nota esto por que hice la documentacion bien y de igual manera argumente todos los conceptos bien y aplicandolos a cada una de las actividades  propuestas en cuanto a la actividad 3 siento que netre un 4-4.5 esto dado a que cumple con todo lo propuesto lo unico es que se me olvido explicar mejor el codigo entonces por eso 
 
+NOTA: hablando con el profesor, se determinó que lo nota subía a 5 porque es posible justificar con evidencias de la bitácora la máxima nota de cada criterio.
+
 
 **¿Qué has venido haciendo bien en tu proceso durante el curso que debas mantener en la próxima unidad?**
 
@@ -10,3 +12,4 @@ siento que e buscado los conceptos bien y intentar entender bien que es lo que c
 **¿Qué has venido haciendo mal en tu proceso durante el curso que debas cambiar en la próxima unidad?**
 
 siento que le unico punto seria que de pronto no entiendo los conceptos del todo bien en lo que concierne a programacion se du funcionamento teorico y que pasara si los aplico pero a la hora de programa es donde mas flaqueo 
+
