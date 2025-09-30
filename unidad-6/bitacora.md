@@ -1,6 +1,6 @@
 # Evidencias de la unidad 6
 
-##Actividad 01 
+## Actividad 01 
 
 <img width="737" height="731" alt="image" src="https://github.com/user-attachments/assets/4f473911-39e3-43f2-9595-0004e25d15bc" />
 
@@ -40,3 +40,36 @@ maxforce que tan rapido puede girar o corregir su trayectoria para seguir el cam
 la modificacion que le hice al codigo fue que reemplaze el perlin por una funcion sinusoidal con esta el campo se vuelve repetitivo y periodico los agentes igual se alinean en patrones ondulante provocando que su movimiento se vea menos natural 
 
 <img width="802" height="599" alt="image" src="https://github.com/user-attachments/assets/c2d7b266-0833-40bf-91b1-89c01dbeedcf" />
+
+
+## Actividad 04
+
+
+**Explica con tus palabras el objetivo y la lógica general de cálculo de cada una de las tres reglas de Flocking (Separación, Alineación, Cohesión).**
+
+-Separacion: el objetivo es evitar que los voids se amontonen en un solo punto  si por ejemplo los boids vecinos estan a una menor distancia de un radio ay definido se va a generar un vector que apuntara mas lejos del vecino luego se hace un promedio de estos vectores y se limita con maxforce 
+
+-Alineacion: El objetivo de este es que todos lo boids sigan una misma direccion por ejemplo se hace haciendo que un boid se dirija en la misma dirrecion promedio de los boids que hay al su alrededor esto se hace sumando los vectores de velocidad de los boids cercanos luego se calcula el promedio el vector que resulte de esto se ajusta a la maxspeed  por ultima la fuerza de dirrecion se calcula con la diferencia entre el vector deseado y la velocidad actual del boid 
+
+-Cohesion la cohesion es la encargada de mover el boid hacia la dirrecion promedio de los boids que hay alrededor esto se hace sumando la posicion de los boids cercanos luego de esto se calcula el centro de masa luego se genera un vector que va desde la posicion actual al centro de masa y luego de esto se limita la maxforce 
+
+**Lista los parámetros clave identificados (radio de percepción, pesos de las reglas, maxspeed, maxforce).**
+
+Radio de percepcion: Este se encarga de que tan lejos puede ver un boid a sus vecinos para cambiar su separacion alineacion y cohesion entre menor sea este menos boids van a afectar en la decision de nuestro boid 
+
+Pesos de las reglas: este se encargar de dar la importancia de cada una  de la fuerzas antes de sumarlas si el peso es alto esa regla va dominar el comportamiento y viceversa 
+
+Velocidad maxima:  este es el limite superior de la rapidez con la que un boid puede moverse  esto evita que aceleren indefinidamente 
+
+Fuerza maxima: esto es la  fuerza que determina la brusquedad con la que un boid puede girar o corregir su trayectoria esto haciendo que los boids no tengan giros irrealistas 
+
+**Describe la modificación que realizaste al código y explica detalladamente el efecto que tuvo en el comportamiento colectivo del enjambre (¿Se dispersan? ¿Forman grupos compactos? ¿se mueven caóticamente?). Incluye una captura de pantalla o GIF si ilustra bien el cambio. Muestra el fragmento de código modificado.**
+
+
+
+
+
+
+
+
+
