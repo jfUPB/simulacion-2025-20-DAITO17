@@ -65,7 +65,9 @@ Fuerza maxima: esto es la  fuerza que determina la brusquedad con la que un boid
 
 **Describe la modificación que realizaste al código y explica detalladamente el efecto que tuvo en el comportamiento colectivo del enjambre (¿Se dispersan? ¿Forman grupos compactos? ¿se mueven caóticamente?). Incluye una captura de pantalla o GIF si ilustra bien el cambio. Muestra el fragmento de código modificado.**
 
+bueno la modificacion que hice esta dentro del metodo flock subiendole mas la separacion la alineacion se la baje y la cohesion sigue igual gracias a esto los boids se dispersan mas rapido ya no se alinea tanto esto provocando como si fuera un enjambre pero cada agente tiene muy buen espacio los unos de los otros tambien genera un poco de desorden en los patrones de movimiento 
 
+<img width="638" height="241" alt="image" src="https://github.com/user-attachments/assets/db4389e4-813a-496a-9f09-32830d48469c" />
 
 
 
