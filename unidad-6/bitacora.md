@@ -70,8 +70,11 @@ bueno la modificacion que hice esta dentro del metodo flock subiendole mas la se
 <img width="638" height="241" alt="image" src="https://github.com/user-attachments/assets/db4389e4-813a-496a-9f09-32830d48469c" />
 
 
+## Actividad 05
 
 
+<img width="957" height="537" alt="image" src="https://github.com/user-attachments/assets/5ef4183a-8a29-4a38-9670-252c4251c09e" />
 
+<img width="957" height="540" alt="image" src="https://github.com/user-attachments/assets/645f4fbf-195c-43cc-944d-20a39e0edb36" />
 
-
+Bueno para este trbajo lo que quiero hacer es usando un flow field que las particulas se vayan moviendo como en grupitos , ademas de esto quiero ver si puedo hacer que el color de las particulas cambien con base en la musica en caso de que no lo logre hare que cambien de color con un lerp  ademas de eso agragar que con  flechas del teclado cambien de dirrecion las particulas , generar como una especie de quick para que cuando en la cancion lo haga yo igual lo pueda hacer y por ultimo poder cambiar la cohesion en tiempo real . Siento que con esto puedo llegar a tener el suficiente control de la obra para modificarla en tiempo real y poderla tocar en tiempo real 
