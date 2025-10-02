@@ -80,7 +80,7 @@ bueno la modificacion que hice esta dentro del metodo flock subiendole mas la se
 Bueno para este trbajo lo que quiero hacer es usando un flow field que las particulas se vayan moviendo como en grupitos , ademas de esto quiero ver si puedo hacer que el color de las particulas cambien con base en la musica en caso de que no lo logre hare que cambien de color con un lerp  ademas de eso agragar que con  flechas del teclado cambien de dirrecion las particulas , generar como una especie de quick para que cuando en la cancion lo haga yo igual lo pueda hacer y por ultimo poder cambiar la cohesion en tiempo real . Siento que con esto puedo llegar a tener el suficiente control de la obra para modificarla en tiempo real y poderla tocar en tiempo real 
 
 **La cancion que legi es polynomical-c de aphex twin**
-´´js 
+``` js
 let flock = [];
 let song;
 let fft;
@@ -321,7 +321,7 @@ class Boid {
     pop();
   }
 }
-´´
+``` 
 [enlace al codigo en p5](https://editor.p5js.org/DAITO17/sketches/_4IAyqzmK)
 
 <img width="800" height="596" alt="image" src="https://github.com/user-attachments/assets/52b97f8d-1f9f-42ad-b253-552a2939df04" />
@@ -330,4 +330,5 @@ class Boid {
 ## Autoevaluacion 
 
 YO siento que para esta unidad me merezco un 5 , esto gracias a que desarolle todas las actividades tal y como estaban propuestas en la bitacora siguiendo toodos los paso y yo siendo que el que diseña y no chatgpt
+
 
