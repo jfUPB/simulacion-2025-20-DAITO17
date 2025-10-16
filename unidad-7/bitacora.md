@@ -213,3 +213,176 @@ Este es un constraint que nos ayuda a empujar arrastrar o hacer otras cosas con 
 **Menciona brevemente cualquier dificultad encontrada al configurar o usar Matter.js inicialmente.**
 
 Siento que los que mas se me dificulto fue setear el matter para que funcionara en el editor web de p5.js por que habia que modificar el index pero como que si lo modificaba no lo aceptaba o que por ejemplo las urls que utilizaba no funcionaba bien o los objetos no los devolvia de manera apaorpiada
+
+
+
+## Actividad 03
+
+
+**Indica claramente la palabra elegida.**
+
+La palabra que voy a elegir va a ser deus que significa dios en latin 
+
+**Explica tu idea conceptual: ¿Cómo la animación física representa el significado de la palabra?**
+
+Bueno mi idea es que la palabra aparezca volando de arriba hacia el centro(como si estuviera cayendo) y que salga como una luz detras de esta , esto esta asosiado con la palabra gracias a que evoca como a lo que esta asosiado a dios que vuela y que de iugal manera brilla 
+
+**Describe brevemente los aspectos técnicos clave de tu implementación: ¿Cómo formaste las letras con Matter.js? ¿Qué propiedades físicas fueron importantes? ¿Usaste restricciones?**
+
+Cada letra es un cuerpo inidividual el objetivo de las letras es que sean cuerpos visibles mas no fisicos o sea hay un circulo invisble que es un collider para que las letras no sigan cayendo infinitamente y las letras se dibujan por encima de este cuerpo , le baje la gravedad para que cayera mas suvemente para dar el efecto de que estaba decendiendo , tambien hay un suelo invisibel que impide que las letras sigan cayendo y tampoco utilice ningun constraint 
+
+**Incluye el código completo de tu sketch final.**
+
+```js
+// Importar módulos de Matter.js
+const { Engine, World, Bodies } = Matter;
+
+let engine;
+let world;
+let letters = [];
+let ground;
+let glowAlpha = 0;
+let glowActive = false;
+let hasLanded = false;
+let landingSound;
+
+function preload() {
+  // 🔹 Carga tu archivo de sonido (debe estar en la misma carpeta del sketch)
+  landingSound = loadSound("Cantos.mp3"); 
+}
+
+function setup() {
+  createCanvas(800, 600);
+
+  engine = Engine.create();
+  world = engine.world;
+
+  // 🔸 Gravedad reducida para caída suave
+  engine.world.gravity.y = 0.3;
+
+  // 🔸 Suelo invisible
+  ground = Bodies.rectangle(width / 2, height / 2 + 100, width, 20, {
+    isStatic: true,
+    render: { visible: false },
+  });
+  World.add(world, ground);
+
+  // 🔸 Crear letras "DEUS"
+  let word = "DEUS";
+  let startX = width / 2 - 120;
+  for (let i = 0; i < word.length; i++) {
+    let letter = new Letter(startX + i * 80, 0, word[i]);
+    letters.push(letter);
+  }
+}
+
+function draw() {
+  background(15);
+  Engine.update(engine);
+
+  // 🔹 Detectar si todas las letras están quietas
+  let allStopped = letters.every(
+    (l) =>
+      abs(l.body.velocity.y) < 0.05 &&
+      abs(l.body.position.y - (height / 2 + 50)) < 60
+  );
+
+  if (allStopped && !hasLanded) {
+    hasLanded = true;
+
+    // 🔊 Reproducir sonido
+    if (landingSound && !landingSound.isPlaying()) {
+      landingSound.play();
+    }
+
+    // 💫 Activar brillo luego de una pequeña pausa
+    setTimeout(() => {
+      glowActive = true;
+    }, 800);
+  }
+
+  // 🔹 Dibujar brillo si está activo
+  if (glowActive) {
+    glowAlpha = lerp(glowAlpha, 180, 0.05);
+    drawGlow();
+  }
+
+  // 🔹 Dibujar letras
+  for (let l of letters) {
+    l.show();
+  }
+}
+
+// ---------------------- Clase Letter ----------------------
+class Letter {
+  constructor(x, y, char) {
+    this.char = char;
+    this.body = Bodies.circle(x, y, 20, {
+      restitution: 0.0,
+      friction: 1.0,
+      density: 0.002,
+    });
+    World.add(world, this.body);
+  }
+
+  show() {
+    const pos = this.body.position;
+    const angle = this.body.angle;
+
+    push();
+    translate(pos.x, pos.y);
+    rotate(angle);
+    textAlign(CENTER, CENTER);
+    textSize(64);
+
+    // 🎨 Dorado brillante animado
+    let gold = color(255, 215, 0);
+    let shine = color(255, 255, 150);
+    let c = lerpColor(gold, shine, sin(frameCount * 0.05) * 0.5 + 0.5);
+
+    fill(c);
+    noStroke();
+    text(this.char, 0, 0);
+    pop();
+  }
+}
+
+// ---------------------- Efecto de Brillo ----------------------
+function drawGlow() {
+  push();
+  noStroke();
+  for (let i = 0; i < 10; i++) {
+    let alpha = map(i, 0, 10, glowAlpha, 0);
+    fill(255, 220, 50, alpha);
+    ellipse(width / 2, height / 2 + 50, 300 + i * 50, 120 + i * 20);
+  }
+  pop();
+}
+
+```
+
+**Inserta una captura de pantalla estática Y un enlace a un GIF animado (¡Esencial!) que muestre tu tipografía semántica animada en acción.**
+
+
+
+<img width="787" height="594" alt="image" src="https://github.com/user-attachments/assets/be259b09-b15e-4a20-89ee-f9f74d0c8e1a" />
+
+
+
+
+
+https://github.com/user-attachments/assets/f72d2ac5-99e6-4f08-996b-d5cebec15bef
+
+
+# Autoevaluacion
+
+## Tu nota propuesta.
+Mi nota propuesta para esta unidad es de 5
+
+## Mi defensa 
+
+Bueno yo siento que me merezco el 5 en esta unidad gracias a que segui al pie de la letra lo que pedia cada actividad y hice todas las actividades propuestas 
+
+
+
+
