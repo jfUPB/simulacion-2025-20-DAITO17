@@ -246,9 +246,13 @@ class Circle {
 [Link del codigo en p5.js](https://editor.p5js.org/DAITO17/sketches/H5TvAt5fS)
 
 
-###Capturas de pantalla mostrando tu pieza en acción.
+### Capturas de pantalla mostrando tu pieza en acción.
 <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/ca3756c6-bfaf-4a66-89af-620e3979f3a9" />
 <img width="1914" height="1070" alt="image" src="https://github.com/user-attachments/assets/1429f81e-ce77-4799-80ed-0bb03085902c" />
+
+
+## Autoevaluacion 
+Siento que me merezco un 5 por que hice todas las actvidades tal y como fuero solicitadas ademas de esto en el timepo estipulado 
 
 
 
