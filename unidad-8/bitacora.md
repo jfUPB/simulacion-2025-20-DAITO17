@@ -21,16 +21,18 @@ siento que esto le da una belleza unica cada visuale no importa si la misma pers
 Elegi end sky de c678924  [link de la cancion ](https://www.youtube.com/watch?v=KUjGkwuct8Y&list=RDKUjGkwuct8Y&start_radio=1)
 
 ### La descripción de tu concepto visual.
-Bueno quiero hacer un campo de partirculas que a medidad que el la musica vaya sonando y cambiando se va a deformar creando circulos entre mas constante y fuerte sea la musica mas se deformara 
+Bueno voy a trbajar con particulas que van a hacer circulos los cuales van a ser reactivos a la musica cambiando su tamaño y comportamineto  que igual manera se van a ir moviendo por todo el lienzo cuando una particula llega al borde de algo reaparece del otro lado 
 
 ### Los inputs seleccionados y la justificación de por qué los elegiste.
-Bueno ademas del audio quiero utilizar un ramp para irla modificando en tiempo real de igual manera voy a ver si puedo meter un noise que igual se vaya modificando sgun el ritmo de la cancion de iugal manera a medidad que vaya haciendo todfo esto los inputs van a ir cambiando 
+Bueno ademas del audio voya utilizar teclado mouse y unso slider el audio va a cambiar el tamaño de las particulas con el wasd voy a mover la dirrecion de las particulas con el click del mouse se puede cambiar los colores de las particulas y por ultimo con los sliders podre modificar que tan cerca estan o que tan lejos la velocidad de las particulas y por ultimo la cantidad de particulas dentro del lienzo 
 
 ### ¿Qué algoritmos o técnicas planeas usar (ej: flow fields, flocking, física, partículas, etc.) y por qué?
-voy a hacer uso de particulas mas que todo por que siento que son las que mas control puedo tener y que mas modificaciones le puedo incorporar 
+voy a utilizar particulas que se van a mover con base a la musica aunque de iugal manera le quiero poner un movimiento que se base en la musica 
 
 
 ### Tus bocetos y una explicación de cómo los inputs influirán en los visuales.
-<img width="957" height="549" alt="image" src="https://github.com/user-attachments/assets/2a68b86b-0007-4469-abb5-a4b5d6a3c2cd" />
+<img width="959" height="544" alt="image" src="https://github.com/user-attachments/assets/b0e209eb-3309-4244-8f0f-8edd414480f8" />
 
-con el input del noise se van a crear pequeños puntos sin color de iugal maner pudiendo modificar lo que se hace con el aduio por que igual el audio van a modificar las particulas creando como parches sin color y este tipo de cosas ademas con el ramp con lo que se hace es que cambie la magnitud de los circulos y este tipo de cosas 
+la explicaciones de los inputs ya esta escrita en la pregunta de los inputs seleccionados 
+
+
